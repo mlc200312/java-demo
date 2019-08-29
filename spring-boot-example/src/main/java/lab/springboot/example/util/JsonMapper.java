@@ -250,12 +250,12 @@ public class JsonMapper extends ObjectMapper {
 	 * JSON 字符串转换为hashMap
 	 * 
 	 * @param json
-	 * @param clazz1
-	 * @param clazz2
+	 * @param kClazz
+	 * @param vClazz
 	 * @return
 	 */
-	public static <K, V> Map<K, V> json2Map(String json, Class<K> clazz1, Class<V> clazz2) {
-		return JsonMapper.getInstance().fromJson(json, JsonMapper.getInstance().createCollectionType(HashMap.class, clazz1, clazz2));
+	public static <K, V> Map<K, V> json2Map(String json, Class<K> kClazz, Class<V> vClazz) {
+		return JsonMapper.getInstance().fromJson(json, JsonMapper.getInstance().createCollectionType(HashMap.class, kClazz, vClazz));
 	}
 
 }
