@@ -9,7 +9,7 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-import org.xmin.demo.core.entity.Order;
+import org.xmin.demo.core.entity.OrderMessage;
 
 /**
  * @Description: 重试死信队列
@@ -23,21 +23,21 @@ public class RetryReceive {
 
     @RabbitHandler
     @RabbitListener(queues = "retry.order.queue")
-    public void onMessage(Order order, Message message, Channel channel) throws Exception {
+    public void onMessage(OrderMessage orderMessage, Message message, Channel channel) throws Exception {
 
-        order.setRemark("---------消息正常执行-----------");
-        processMessage(order);
+        orderMessage.setRemark("---------消息正常执行-----------");
+        processMessage(orderMessage);
     }
 
-    private void processMessage(Order order) throws Exception {
+    private void processMessage(OrderMessage orderMessage) throws Exception {
 
-        if (order.getId() % 3 == 0) {
-            logger.error("消息执行时失败:", order);
-            order.setRemark(order.getRemark() + ":重试！");
+        if (orderMessage.getId() % 3 == 0) {
+            logger.error("消息执行时失败:", orderMessage);
+            orderMessage.setRemark(orderMessage.getRemark() + ":重试！");
             throw new BusinessException("消息执行失败！");
         }
 
-        logger.info("Received <" + order + ">");
+        logger.info("Received <" + orderMessage + ">");
     }
 
 }

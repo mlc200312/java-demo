@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.xmin.demo.boot.amqp.SpringBootRabbitmqProducerApplication;
-import org.xmin.demo.core.entity.Order;
+import org.xmin.demo.core.entity.OrderMessage;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,25 +27,25 @@ public class RabbitmqDelayRetrySenderTests {
     @Test
     public void sendAll() {
         for (int i = 0; i < 10; i++) {
-            Order order = new Order();
-            order.setId(0L + i);
-            order.setBuyerId(2000000L + i);
-            order.setOrderDate(new Date());
-            amqpTemplate.convertAndSend("retry.order.exchange", "retry.order", order);
+            OrderMessage orderMessage = new OrderMessage();
+            orderMessage.setId(0L + i);
+            orderMessage.setBuyerId(2000000L + i);
+            orderMessage.setOrderDate(new Date());
+            amqpTemplate.convertAndSend("retry.order.exchange", "retry.order", orderMessage);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            System.out.println(order.getId() + "：" + sdf.format(new Date()));
+            System.out.println(orderMessage.getId() + "：" + sdf.format(new Date()));
         }
     }
 
     @Test
     public void sendOne() {
-        Order order = new Order();
-        order.setId(6L);
-        order.setBuyerId(6L);
-        order.setOrderDate(new Date());
-        amqpTemplate.convertAndSend("retry.order.exchange", "retry.order", order);
+        OrderMessage orderMessage = new OrderMessage();
+        orderMessage.setId(6L);
+        orderMessage.setBuyerId(6L);
+        orderMessage.setOrderDate(new Date());
+        amqpTemplate.convertAndSend("retry.order.exchange", "retry.order", orderMessage);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(order.getId() + "：" + sdf.format(new Date()));
+        System.out.println(orderMessage.getId() + "：" + sdf.format(new Date()));
     }
 
 }

@@ -4,12 +4,11 @@ package org.xmin.demo.boot.amqp.producer;
 import com.xmin.lab.common.logging.Logger;
 import com.xmin.lab.common.logging.LoggerFactory;
 import com.xmin.lab.common.logging.LoggerType;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.xmin.demo.core.entity.Order;
+import org.xmin.demo.core.entity.OrderMessage;
 
 /**
  * @Description: 功能描述
@@ -64,10 +63,10 @@ public class DirectRpcSender {
      * @param orderId
      * @return
      */
-    public Order send(Long orderId) {
+    public OrderMessage send(Long orderId) {
         logger.info("direct.rpc send message:" + orderId);
-        Order order = (Order) amqpTemplate.convertSendAndReceive("direct.rpc", orderId);
-        return order;
+        OrderMessage orderMessage = (OrderMessage) amqpTemplate.convertSendAndReceive("direct.rpc", orderId);
+        return orderMessage;
     }
 
 }

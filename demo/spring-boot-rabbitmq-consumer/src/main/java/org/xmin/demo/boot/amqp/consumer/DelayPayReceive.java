@@ -7,10 +7,9 @@ import com.xmin.lab.common.logging.LoggerType;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-import org.xmin.demo.core.entity.Order;
+import org.xmin.demo.core.entity.OrderMessage;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -29,7 +28,7 @@ public class DelayPayReceive {
     /**
      * 延迟消费
      *
-     * @param order
+     * @param orderMessage
      * @param channel
      * @param message
      * @throws InterruptedException
@@ -37,14 +36,14 @@ public class DelayPayReceive {
      */
     @RabbitHandler
     @RabbitListener(queues = "direct.delay.pay")
-    public void onMessage(@Payload Order order, Channel channel, Message message) throws InterruptedException, IOException {
+    public void onMessage(@Payload OrderMessage orderMessage, Channel channel, Message message) throws InterruptedException, IOException {
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             // 模拟执行任务
-            logger.warn("这是延迟队列消费：" + order + "：" + sdf.format(new Date()));
+            logger.warn("这是延迟队列消费：" + orderMessage + "：" + sdf.format(new Date()));
         } catch (Exception e) {
-            logger.error(String.format("延迟队列消费者失败[%s]！", order.getId()));
+            logger.error(String.format("延迟队列消费者失败[%s]！", orderMessage.getId()));
         }
 
     }

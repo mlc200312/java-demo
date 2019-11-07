@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.xmin.demo.core.entity.Order;
+import org.xmin.demo.core.entity.OrderMessage;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,11 +25,11 @@ public class DelayPaySender {
     @Autowired
     private RabbitTemplate amqpTemplate;
 
-    public void send(Order order) {
+    public void send(OrderMessage orderMessage) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        CorrelationData correlationData = new CorrelationData(String.valueOf(order.getId()));
-        amqpTemplate.convertAndSend("direct.pay.exchange", "OrderPay", order, correlationData);
-        logger.info(order.getId() + "：" + sdf.format(new Date()));
+        CorrelationData correlationData = new CorrelationData(String.valueOf(orderMessage.getId()));
+        amqpTemplate.convertAndSend("direct.pay.exchange", "OrderPay", orderMessage, correlationData);
+        logger.info(orderMessage.getId() + "：" + sdf.format(new Date()));
     }
 
 }

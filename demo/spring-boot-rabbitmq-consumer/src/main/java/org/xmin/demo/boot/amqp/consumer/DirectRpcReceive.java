@@ -9,7 +9,7 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-import org.xmin.demo.core.entity.Order;
+import org.xmin.demo.core.entity.OrderMessage;
 
 import java.io.IOException;
 import java.util.Date;
@@ -50,16 +50,16 @@ public class DirectRpcReceive {
      */
     @RabbitHandler
     @RabbitListener(queuesToDeclare = @Queue("direct.rpc"))
-    public Order onMessage(Long orderId, Message message, Channel channel) throws IOException {
+    public OrderMessage onMessage(Long orderId, Message message, Channel channel) throws IOException {
 
         logger.info(String.format("direct.rpc receive orderId: %d", orderId));
 
-        Order order = new Order();
-        order.setId(orderId);
-        order.setBuyerId(1L);
-        order.setOrderDate(new Date());
+        OrderMessage orderMessage = new OrderMessage();
+        orderMessage.setId(orderId);
+        orderMessage.setBuyerId(1L);
+        orderMessage.setOrderDate(new Date());
 
-        return order;
+        return orderMessage;
     }
 
 }

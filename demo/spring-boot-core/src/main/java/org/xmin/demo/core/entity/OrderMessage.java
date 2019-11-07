@@ -12,7 +12,7 @@ import java.util.Date;
  * @Date: 2019-07-30
  **/
 @Data
-public class Order extends BaseBean implements DoBean {
+public class OrderMessage extends BaseBean implements DoBean {
 
     private Long id;
     private Long buyerId;

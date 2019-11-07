@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.xmin.demo.boot.amqp.SpringBootRabbitmqProducerApplication;
 import org.xmin.demo.boot.amqp.producer.*;
-import org.xmin.demo.core.entity.Order;
+import org.xmin.demo.core.entity.OrderMessage;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -39,8 +39,8 @@ public class RabbitmqSenderTests {
     public void directNotifyTest() {
         sender.sendA("测试（交换机——DirectExchange）：" + System.currentTimeMillis());
         sender.sendB("测试（交换机——DirectExchange）：" + System.currentTimeMillis());
-        Order order = sender.send(900000001L);
-        System.out.println(order);
+        OrderMessage orderMessage = sender.send(900000001L);
+        System.out.println(orderMessage);
     }
 
     @Test
@@ -80,11 +80,11 @@ public class RabbitmqSenderTests {
     @Test
     public void delayPayTest() {
         for (int i = 0; i < 10; i++) {
-            Order order = new Order();
-            order.setId(1000000L + i);
-            order.setBuyerId(2000000L + i);
-            order.setOrderDate(new Date());
-            orderSender.send(order);
+            OrderMessage orderMessage = new OrderMessage();
+            orderMessage.setId(1000000L + i);
+            orderMessage.setBuyerId(2000000L + i);
+            orderMessage.setOrderDate(new Date());
+            orderSender.send(orderMessage);
         }
     }
 
