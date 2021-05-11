@@ -4,18 +4,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.example.demo.rabbitmq</groupId>
-        <artifactId>spring-rabbitmq-demo</artifactId>
+        <groupId>com.example.demo.rocketmq</groupId>
+        <artifactId>spring-rocketmq-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.exmple.demo.rabbitmq</groupId>
-    <artifactId>spring-rabbitmq-consumer</artifactId>
+    <groupId>com.example.demo.rocketmq</groupId>
+    <artifactId>spring-rocketmq-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>spring-rabbitmq-consumer</name>
-    <description>Spring Rabbitmq Consumer</description>
+    <name>spring-rocketmq-consumer</name>
+    <description>Spring Rocketmq Consumer</description>
 
     <build>
         <plugins>
@@ -23,7 +23,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.demo.rabbitmq.SpringBootRabbitmqConsumerApplication</mainClass>
+                    <mainClass>com.example.demo.rocketmq.SpringRocketmqConsumerApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,4 +1,4 @@
-package com.example.demo.core.model;
+package com.example.demo.rabbitmq.bean;
 
 import lombok.Data;
 

@@ -17,18 +17,6 @@
     <name>spring-rabbitmq-producer</name>
     <description>Spring Rabbitmq Producer</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.example.demo.core</groupId>
-            <artifactId>spring-demo-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>

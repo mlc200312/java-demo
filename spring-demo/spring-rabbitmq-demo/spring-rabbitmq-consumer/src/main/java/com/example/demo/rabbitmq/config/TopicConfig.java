@@ -1,7 +1,7 @@
 package com.example.demo.rabbitmq.config;
 
 import com.example.demo.core.constant.QueueConstants;
-import com.example.demo.core.model.Amqp;
+import com.example.demo.rabbitmq.bean.Amqp;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
