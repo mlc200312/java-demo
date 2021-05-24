@@ -1,4 +1,4 @@
-package com.minlc.demo.laboratory.itext;
+package com.example.demo.lab.itext;
 
 import lombok.ToString;
 

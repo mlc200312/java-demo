@@ -1,4 +1,4 @@
-package com.minlc.demo.laboratory.itext;
+package com.example.demo.lab.itext;
 
 import com.itextpdf.awt.geom.Rectangle2D;
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;

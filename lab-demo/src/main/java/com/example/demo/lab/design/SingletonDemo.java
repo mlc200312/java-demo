@@ -1,4 +1,4 @@
-package com.minlc.demo.laboratory.design;
+package com.example.demo.lab.design;
 
 /**
  * @Description: 功能描述

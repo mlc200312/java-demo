@@ -1,4 +1,4 @@
-package com.minlc.demo.laboratory.io;
+package com.example.demo.lab.io;
 
 import java.io.IOException;
 import java.io.InputStream;
